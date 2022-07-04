@@ -1,7 +1,7 @@
 # myoungseok
 
 ## 깃허브와 로컬 폴더 연결
-1. 깃 설치
+### 1. 깃 설치
 
 https://git-scm.com/downloads
 
@@ -14,7 +14,7 @@ Download for Windows ->  64-bit Git for Windows Setup.
 다운로드 후, 기본 설정값 세팅 후 설치
 
 
-2. xampp 폴더 중에서 htdocs 폴더에 있는 php 파일만 업로드
+### 2. xampp 폴더 중에서 htdocs 폴더에 있는 php 파일만 업로드
 
 ![image](https://user-images.githubusercontent.com/33647663/177064852-bd2dc758-c54b-4a55-8123-0571e2632280.png)
 
@@ -34,18 +34,13 @@ git config --global user.email "깃허브이메일"
 ```
 
 
-> 깃허브 이름 -> 자신의 깃허브 페이지에서 나오는 이름
-
-> 나 : kangmyoungseok
-
-![image](https://user-images.githubusercontent.com/33647663/177065763-d3966005-8cb3-4ca8-8c97-de9cfdefa4cf.png)
-
+깃허브 이름 -> 자신의 깃허브 페이지에서 나오는 이름
+- ex) https://github.com/kangmyoungseok  : kangmyoungseok
 깃허브 이메일 -> 깃허브 로그인 할때 사용하는 이메일 계정
 
-아래의 정보 자신에게 맞도록 입력
+아래의 정보 중 ```https://github.com/WebH3ll/myoungseok.git``` 이 부분만 자신의 레포지토리 주소 복사해서 바꿔넣기
 
 ```
-echo "# myoungseok" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
@@ -60,7 +55,8 @@ git push -u origin main
 성공적으로 명령어가 들어갔다면 현재 로컬 폴더와 원격 레포지토리가 연결된 것임
 
 
-3. .gitignore
+### 3.gitignore
+
 vscode로 접속해 보면 다음과 같이 나오는데, 원격 레포지토리와 현재 로컬 폴더간의 차이가 발생한 파일들의 리스트가 나옴
 
 ![image](https://user-images.githubusercontent.com/33647663/177066308-7d56bc09-3e9a-45d2-a383-1957dd0fd2c4.png)
@@ -83,7 +79,7 @@ htdocs폴더에서 모든 파일을 원격 레포지토리에 저장할 것이 �
 이제 commit을 하여 원격 레포지토리로 업로드
 
 
-4. 업로드 
+### 4. 업로드 
 
 ```
 **+**를 눌러서 전부 변경사항에 추가
