@@ -36,6 +36,7 @@ git config --global user.email "깃허브이메일"
 
 깃허브 이름 -> 자신의 깃허브 페이지에서 나오는 이름
 - ex) https://github.com/kangmyoungseok  : kangmyoungseok
+
 깃허브 이메일 -> 깃허브 로그인 할때 사용하는 이메일 계정
 
 아래의 정보 중 ```https://github.com/WebH3ll/myoungseok.git``` 이 부분만 자신의 레포지토리 주소 복사해서 바꿔넣기
@@ -104,3 +105,15 @@ htdocs폴더에서 모든 파일을 원격 레포지토리에 저장할 것이 �
 ```
 
 ![image](https://user-images.githubusercontent.com/33647663/177066726-d6e6e925-7d28-4e32-9250-2b4ab1cd57fe.png)
+
+
+## 클라우드에 웹페이지 올리기
+
+### AWS Free Tier 가입
+
+https://transferhwang.tistory.com/307
+
+### EC2 생성 및 연동
+
+https://kangmyoungseok.github.io/cloud/aws-install/
+
