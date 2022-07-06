@@ -7,7 +7,7 @@
     $connect = mysqli_connect('127.0.0.1', 'test', 'test123', 'webhell') or die("connect failed");
 
     # Total Ranking Data
-    $query = "select user.idx,tetris.id,max(score),line,date,score,rank() over (order by score desc) as ranking from tetris,user where user.id=tetris.id group by id order by ranking";
+    $query = "select user.idx,tetris.id,max(score) as high,line,date,rank() over (order by high desc) as ranking from tetris,user where user.id=tetris.id group by id order by ranking";
     $result = mysqli_query($connect,$query);
 
     # User's Data
@@ -467,7 +467,7 @@
                           <td class="py-1"><img src="/images/faces/face<?php echo $row['idx']%20; ?>.png" alt="image"/></td>
                           <td><?php echo $row['id']; ?></td>
                           <td class="text-info"><?php echo $row['line'];?></td>
-                          <td><label class="badge badge-info"><?php echo $row['score'];?></td>
+                          <td><label class="badge badge-info"><?php echo $row['high'];?></td>
                           <td><?php echo $row['date'];?></td>
                         </tr>
                         
