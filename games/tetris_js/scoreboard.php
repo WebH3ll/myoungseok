@@ -7,7 +7,7 @@
     $connect = mysqli_connect('127.0.0.1', 'test', 'test123', 'webhell') or die("connect failed");
 
     # Total Ranking Data
-    $query = "select user.idx,tetris.id,max(score),line,date,score,rank() over (order by score desc) as ranking from tetris,user where user.id=tetris.id group by id";
+    $query = "select user.idx,tetris.id,max(score),line,date,score,rank() over (order by score desc) as ranking from tetris,user where user.id=tetris.id group by id order by ranking";
     $result = mysqli_query($connect,$query);
 
     # User's Data
