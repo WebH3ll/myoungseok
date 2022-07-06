@@ -4,11 +4,9 @@
     $email=$_POST['email'];
     $password = $_POST['password'];
     $query = "select * from user where email='$email' and password='$password'";    //역순 출력
-    echo $query;
     $result = mysqli_query($connect, $query);
 
     $row = mysqli_fetch_assoc($result);
-    echo $row;
     if(is_null($row)){
         echo "<script>alert('Invalid email or password');</script>";
         echo "<script>location.replace('/index.php');</script>";
