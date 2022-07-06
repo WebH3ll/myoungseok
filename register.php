@@ -10,13 +10,10 @@
     $validate_query = "select * from user where email='$email'";
     $result = mysqli_query($connect,$validate_query);
     $row = mysqli_fetch_assoc($result);
-    echo $row;
     if(!is_null($row)){
         echo "<script>alert('already exists email');</script>";
         echo "<script>location.replace('/register.html');</script>";
 #        echo "존재하는 이메일";
-    }else{
-        echo "가능한 이메일";
     }
 
     $query = "insert into user(email,id,country,password) values('$email','$id','$country','$password')";
