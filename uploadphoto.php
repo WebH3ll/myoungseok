@@ -1,21 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-  echo "<script>alert('You Have to Login');</script>";
-  echo "<script>location.replace('/index.php')</script>";
-}
-$connect = mysqli_connect('127.0.0.1', 'test', 'test123', 'webhell') or die("connect failed");
-
-# Total Ranking Data
-$query = "select user.idx,tetris.id,max(score) as high,max(line) as line,date,rank() over (order by high desc) as ranking from tetris,user where user.id=tetris.id group by id order by ranking";
-$result = mysqli_query($connect, $query);
-
-# User's Data
-$id = $_SESSION['user_id'];
-$query2 = "select * from tetris where id='$id' order by date desc";
-$result2 = mysqli_query($connect, $query2);
-$idx = 0;
-
 ?>
 
 <!DOCTYPE html>
@@ -27,19 +11,19 @@ $idx = 0;
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Webh3ll</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="../../text/css" href="js/select.dataTables.min.css">
+  <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="../text/css" href="js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 
 <body>
@@ -47,8 +31,8 @@ $idx = 0;
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.php"><img src="../../images/logo.png" class="mr-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="index.php"><img src="../../images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo mr-5" href="index.php"><img src="images/logo.png" class="mr-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo" /></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -117,7 +101,7 @@ $idx = 0;
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face<?php echo $_SESSION['idx'] ?>.png" alt="profile" />
+              <img src="images/faces/face<?php echo $_SESSION['idx'] ?>.png" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -261,7 +245,7 @@ $idx = 0;
             </div>
             <ul class="chat-list">
               <li class="list active">
-                <div class="profile"><img src="../../images/faces/face1.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face1.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Thomas Douglas</p>
                   <p>Available</p>
@@ -269,7 +253,7 @@ $idx = 0;
                 <small class="text-muted my-auto">19 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face2.png" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face2.png" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <div class="wrapper d-flex">
                     <p>Catherine</p>
@@ -280,7 +264,7 @@ $idx = 0;
                 <small class="text-muted my-auto">23 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face3.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face3.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Daniel Russell</p>
                   <p>Available</p>
@@ -288,7 +272,7 @@ $idx = 0;
                 <small class="text-muted my-auto">14 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face4.png" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face4.png" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <p>James Richardson</p>
                   <p>Away</p>
@@ -296,7 +280,7 @@ $idx = 0;
                 <small class="text-muted my-auto">2 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face5.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face5.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Madeline Kennedy</p>
                   <p>Available</p>
@@ -304,7 +288,7 @@ $idx = 0;
                 <small class="text-muted my-auto">5 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face6.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face6.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Sarah Graves</p>
                   <p>Available</p>
@@ -338,17 +322,17 @@ $idx = 0;
                 <li class="nav-item"> <a class="nav-link" href="/games/tetris_js/scoreboard.php">ScoreBoard</a></li>
               </ul>
             </div>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
+            <a class="nav-link" data-toggle="collapse" href="#photo-basic" aria-expanded="false" aria-controls="photo-basic">
+              <i class="icon-camera menu-icon"></i>
+              <span class="menu-title">Photo</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="photo-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/photoboard.php">Photo Board</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/uploadphoto.php">Upload Photo</a></li>
               </ul>
             </div>
           </li>
@@ -435,130 +419,101 @@ $idx = 0;
         </ul>
       </nav>
       <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Tetris Ranking</h4>
-                  <p class="card-description">
-                    Who is the best <code>tetris player</code>
-                  </p>
-                  <div class="table-responsive">
-                    <table class="table table-hover">
-                      <thead>
-                        <tr>
-                          <th>rank</th>
-                          <th>User</th>
-                          <th>id</th>
-                          <th>lines</th>
-                          <th>Scores</th>
-                          <th>Date</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>0</td>
-                          <td class="py-1"><img src="/images/faces/face20.png" alt="image" /></td>
-                          <td>myoungseok</td>
-                          <td class="text-success"> 100 </td>
-                          <td><label class="badge badge-success">5000</label></td>
-                          <td>2022-07:06 15:14:32</td>
-                        </tr>
-                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                          <tr>
-                            <td><?php echo $row['ranking']; ?></td>
-                            <td class="py-1"><img src="/images/faces/face<?php echo $row['idx'] % 20; ?>.png" alt="image" /></td>
-                            <td><?php echo $row['id']; ?></td>
-                            <td class="text-info"><?php echo $row['line']; ?></td>
-                            <td><label class="badge badge-info"><?php echo $row['high']; ?></td>
-                            <td><?php echo $row['date']; ?></td>
-                          </tr>
+      <div class="container">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Upload Photo</h2>
+              <p class="card-description">
+                Upload a pretty picture you have
+              </p>
+              <form class="forms-sample" method="post" action="savephoto.php" enctype="multipart/form-data" onsubmit="return fileCheck();">
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" class="form-control" id="subject" name="subject" placeholder="subject">
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" id="description" rows="4" placeholder="describe your photo" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Image upload</label>
+                  <input type="file" name="file" class="file-upload-default" id="file">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image" id="upload-name">
+                    <span class="input-group-append">
 
-                        <?php } ?>
-
-                      </tbody>
-                    </table>
+                      <button type="button" class="file-upload-browse btn btn-primary" onclick="onclick=document.all.file.click()">Upload</button>
+                    </span>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">My Tetris Records</h4>
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>idx</th>
-                          <th>User</th>
-                          <th>id</th>
-                          <th>lines</th>
-                          <th>Scores</th>
-                          <th>Date</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
-                          <tr>
-                            <td><?php echo $idx++; ?></td>
-                            <td class="py-1"><img src="/images/faces/face<?php echo $_SESSION['idx'] % 20; ?>.png" alt="image" /></td>
-                            <td><?php echo $_SESSION['user_id']; ?></td>
-                            <td><?php echo $row['line']; ?></td>
-                            <td><?php echo $row['score']; ?></td>
-                            <td><?php echo $row['date']; ?></td>
-                          </tr>
-
-                        <?php } ?>
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <a class="btn btn-light" href="photoboard.php">Cancel</a>
+              </form>
             </div>
           </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-          </div>
-        </footer>
-        <!-- partial -->
       </div>
-      <!-- main-panel ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="/js/dataTables.select.min.js"></script>
+  <script src="../vendors/chart.js/Chart.min.js"></script>
+  <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="/js/off-canvas.js"></script>
-  <script src="/js/hoverable-collapse.js"></script>
-  <script src="/js/template.js"></script>
-  <script src="/js/settings.js"></script>
-  <script src="/js/todolist.js"></script>
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="/js/dashboard.js"></script>
-  <script src="/js/Chart.roundedBarCharts.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
 
 </html>
+
+<script>
+  $("#file").on('change', function() {
+    var fileName = $("#file").val();
+    $("#upload-name").val(fileName);
+  })
+</script>
+
+<script type="text/javascript">
+  function fileCheck() {
+    var fileCheck = document.getElementById("file").value;
+    if (!fileCheck) {
+      alert("파일을 첨부해 주세요");
+      return false;
+    } else {
+      return true;
+    }
+  }
+</script>

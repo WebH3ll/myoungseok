@@ -1,21 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-  echo "<script>alert('You Have to Login');</script>";
-  echo "<script>location.replace('/index.php')</script>";
-}
-$connect = mysqli_connect('127.0.0.1', 'test', 'test123', 'webhell') or die("connect failed");
-
-# Total Ranking Data
-$query = "select user.idx,tetris.id,max(score) as high,max(line) as line,date,rank() over (order by high desc) as ranking from tetris,user where user.id=tetris.id group by id order by ranking";
-$result = mysqli_query($connect, $query);
-
-# User's Data
-$id = $_SESSION['user_id'];
-$query2 = "select * from tetris where id='$id' order by date desc";
-$result2 = mysqli_query($connect, $query2);
-$idx = 0;
-
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -27,28 +11,27 @@ $idx = 0;
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Webh3ll</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="../../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="../../text/css" href="js/select.dataTables.min.css">
+  <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="../text/css" href="js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
+  <link rel="shortcut icon" href="images/favicon.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.php"><img src="../../images/logo.png" class="mr-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="index.php"><img src="../../images/logo-mini.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo mr-5" href="index.php"><img src="images/logo.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -117,7 +100,7 @@ $idx = 0;
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="../../images/faces/face<?php echo $_SESSION['idx'] ?>.png" alt="profile" />
+              <img src="images/faces/face<?php echo $_SESSION['idx'] ?>.png" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -149,12 +132,8 @@ $idx = 0;
         <div id="theme-settings" class="settings-panel">
           <i class="settings-close ti-close"></i>
           <p class="settings-heading">SIDEBAR SKINS</p>
-          <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-            <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
-          </div>
-          <div class="sidebar-bg-options" id="sidebar-dark-theme">
-            <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-          </div>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
           <p class="settings-heading mt-2">HEADER SKINS</p>
           <div class="color-tiles mx-0 px-4">
             <div class="tiles success"></div>
@@ -261,7 +240,7 @@ $idx = 0;
             </div>
             <ul class="chat-list">
               <li class="list active">
-                <div class="profile"><img src="../../images/faces/face1.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face1.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Thomas Douglas</p>
                   <p>Available</p>
@@ -269,7 +248,7 @@ $idx = 0;
                 <small class="text-muted my-auto">19 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face2.png" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face2.png" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <div class="wrapper d-flex">
                     <p>Catherine</p>
@@ -280,7 +259,7 @@ $idx = 0;
                 <small class="text-muted my-auto">23 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face3.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face3.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Daniel Russell</p>
                   <p>Available</p>
@@ -288,7 +267,7 @@ $idx = 0;
                 <small class="text-muted my-auto">14 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face4.png" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="images/faces/face4.png" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <p>James Richardson</p>
                   <p>Away</p>
@@ -296,7 +275,7 @@ $idx = 0;
                 <small class="text-muted my-auto">2 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face5.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face5.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Madeline Kennedy</p>
                   <p>Available</p>
@@ -304,7 +283,7 @@ $idx = 0;
                 <small class="text-muted my-auto">5 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="../../images/faces/face6.png" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="images/faces/face6.png" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Sarah Graves</p>
                   <p>Available</p>
@@ -338,146 +317,130 @@ $idx = 0;
                 <li class="nav-item"> <a class="nav-link" href="/games/tetris_js/scoreboard.php">ScoreBoard</a></li>
               </ul>
             </div>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
+            <a class="nav-link" data-toggle="collapse" href="#photo-basic" aria-expanded="false" aria-controls="photo-basic">
+              <i class="icon-camera menu-icon"></i>
+              <span class="menu-title">Photo</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="photo-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/photoboard.php">Photo Board</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/uploadphoto.php">Upload Photo</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-              <i class="icon-columns menu-icon"></i>
-              <span class="menu-title">Form elements</span>
+            <a class="nav-link" data-toggle="collapse" href="#board-basic" aria-expanded="false" aria-controls="board-basic">
+              <i class="icon-clipboard menu-icon"></i>
+              <span class="menu-title">Board</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="form-elements">
+            <div class="collapse" id="board-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
+                <li class="nav-item"><a class="nav-link" href="/board.php">Board</a></li>
+                <li class="nav-item"><a class="nav-link" href="/writeboard.php">Write Board</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-              <i class="icon-bar-graph menu-icon"></i>
-              <span class="menu-title">Charts</span>
+            <a class="nav-link" data-toggle="collapse" href="#dns" aria-expanded="false" aria-controls="dns">
+              <i class="icon-ribbon menu-icon"></i>
+              <span class="menu-title">DNS</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="charts">
+            <div class="collapse" id="dns">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/dns.php">DNS</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/ping.php">PING</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
               <i class="icon-grid-2 menu-icon"></i>
-              <span class="menu-title">Tables</span>
+              <span class="menu-title">PHP Examples </span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">LFI</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">RFI</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+            <a class="nav-link" data-toggle="collapse" href="#xss" aria-expanded="false" aria-controls="xss">
               <i class="icon-contract menu-icon"></i>
-              <span class="menu-title">Icons</span>
+              <span class="menu-title">XSS</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="icons">
+            <div class="collapse" id="xss">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/storedXSS.php">Stored XSS</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/reflectedXSS.php">Reflected XSS</a></li>
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-              <i class="icon-ban menu-icon"></i>
-              <span class="menu-title">Error pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="error">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/documentation/documentation.html">
-              <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
-            </a>
-          </li>
+
         </ul>
       </nav>
       <!-- partial -->
+      
+      <!-- 요기따가 나머지 복붙하믄 댑니다 -->
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
+            <div class="col-lg-1 grid-margin stretch-card"></div>
+            <div class="col-lg-9 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Tetris Ranking</h4>
+                  <h4 class="card-title">Hoverable Table</h4>
                   <p class="card-description">
-                    Who is the best <code>tetris player</code>
+                    Add class <code>.table-hover</code>
                   </p>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>rank</th>
                           <th>User</th>
-                          <th>id</th>
-                          <th>lines</th>
-                          <th>Scores</th>
-                          <th>Date</th>
+                          <th>Product</th>
+                          <th>Sale</th>
+                          <th>Status</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>0</td>
-                          <td class="py-1"><img src="/images/faces/face20.png" alt="image" /></td>
-                          <td>myoungseok</td>
-                          <td class="text-success"> 100 </td>
-                          <td><label class="badge badge-success">5000</label></td>
-                          <td>2022-07:06 15:14:32</td>
+                          <td>Jacob</td>
+                          <td>Photoshop</td>
+                          <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
+                          <td><label class="badge badge-danger">Pending</label></td>
                         </tr>
-                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                          <tr>
-                            <td><?php echo $row['ranking']; ?></td>
-                            <td class="py-1"><img src="/images/faces/face<?php echo $row['idx'] % 20; ?>.png" alt="image" /></td>
-                            <td><?php echo $row['id']; ?></td>
-                            <td class="text-info"><?php echo $row['line']; ?></td>
-                            <td><label class="badge badge-info"><?php echo $row['high']; ?></td>
-                            <td><?php echo $row['date']; ?></td>
-                          </tr>
-
-                        <?php } ?>
-
+                        <tr>
+                          <td>Messsy</td>
+                          <td>Flash</td>
+                          <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
+                          <td><label class="badge badge-warning">In progress</label></td>
+                        </tr>
+                        <tr>
+                          <td>John</td>
+                          <td>Premier</td>
+                          <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
+                          <td><label class="badge badge-info">Fixed</label></td>
+                        </tr>
+                        <tr>
+                          <td>Peter</td>
+                          <td>After effects</td>
+                          <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
+                          <td><label class="badge badge-success">Completed</label></td>
+                        </tr>
+                        <tr>
+                          <td>Dave</td>
+                          <td>53275535</td>
+                          <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
+                          <td><label class="badge badge-warning">In progress</label></td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -485,80 +448,70 @@ $idx = 0;
               </div>
             </div>
 
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">My Tetris Records</h4>
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>idx</th>
-                          <th>User</th>
-                          <th>id</th>
-                          <th>lines</th>
-                          <th>Scores</th>
-                          <th>Date</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php while ($row = mysqli_fetch_assoc($result2)) { ?>
-                          <tr>
-                            <td><?php echo $idx++; ?></td>
-                            <td class="py-1"><img src="/images/faces/face<?php echo $_SESSION['idx'] % 20; ?>.png" alt="image" /></td>
-                            <td><?php echo $_SESSION['user_id']; ?></td>
-                            <td><?php echo $row['line']; ?></td>
-                            <td><?php echo $row['score']; ?></td>
-                            <td><?php echo $row['date']; ?></td>
-                          </tr>
-
-                        <?php } ?>
-
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+          <div class="row">
+            <div class="col-9"></div>
+            <div class="col align-items-right">
+            <button type="button" class="btn btn-primary">Primary</button>
+          </div>
+          </div>
+          
+
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
           </div>
         </footer>
-        <!-- partial -->
+      
       </div>
-      <!-- main-panel ends -->
-    </div>
+
+        <!-- partial -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>   
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="../../vendors/chart.js/Chart.min.js"></script>
-  <script src="../../vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="../../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="/js/dataTables.select.min.js"></script>
+  <script src="../vendors/chart.js/Chart.min.js"></script>
+  <script src="../vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="/js/off-canvas.js"></script>
-  <script src="/js/hoverable-collapse.js"></script>
-  <script src="/js/template.js"></script>
-  <script src="/js/settings.js"></script>
-  <script src="/js/todolist.js"></script>
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="/js/dashboard.js"></script>
-  <script src="/js/Chart.roundedBarCharts.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
 
 </html>
+
