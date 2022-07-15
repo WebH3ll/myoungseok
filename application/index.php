@@ -8,7 +8,7 @@ if(isset($_GET['title'])) {
     $title = $_GET['title'];
     $title_arg = "&title=" . urlencode($title);
 } else {
-    $title = "Fox";
+    $title = "Puang";
     $title_arg = "";
 }
 
@@ -17,6 +17,8 @@ $img = base64_encode(file_get_contents(__DIR__ . "/img.png"));
 $html = "<!DOCTYPE html>
 <html>
 <head>
+<title>Webh3ll</title>
+<link rel='shortcut icon' href='/images/favicon.png' />
 <style>
 body {
     display: block;
@@ -36,7 +38,7 @@ $html .= "</body>";
 $html .= "</html>";
 
 if (isset($_GET['pdf'])) {
-    $filename = "export.pdf";
+    $filename = "puang.pdf";
 
     $options = new Options();
     $options->setIsRemoteEnabled(true);
@@ -56,4 +58,6 @@ if (isset($_GET['pdf'])) {
     $dompdf->stream($filename, array('Attachment' => 0));
 } else {
     echo $html;
+    
+    echo "<br><i>Have you ever heard of DomPDF?</i>";
 }

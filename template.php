@@ -371,15 +371,14 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#xss" aria-expanded="false" aria-controls="xss">
-              <i class="icon-contract menu-icon"></i>
-              <span class="menu-title">XSS</span>
+            <a class="nav-link" data-toggle="collapse" href="#pdf" aria-expanded="false" aria-controls="pdf">
+              <i class="icon-paper-clip menu-icon"></i>
+              <span class="menu-title">PDF</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="xss">
+            <div class="collapse" id="pdf">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/storedXSS.php">Stored XSS</a></li>
-                <li class="nav-item"> <a class="nav-link" href="/reflectedXSS.php">Reflected XSS</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/application/?show_export&title=Puang1">PDF</a></li>
               </ul>
             </div>
           </li>
