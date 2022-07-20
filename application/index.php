@@ -8,7 +8,7 @@ if(isset($_GET['title'])) {
     $title = $_GET['title'];
     $title_arg = "&title=" . urlencode($title);
 } else {
-    $title = "Puang";
+    $title = "";
     $title_arg = "";
 }
 
@@ -31,7 +31,7 @@ body {
 <img src='data:image/png;base64,$img'>";
 
 if(isset($_GET['show_export']) && !isset($_GET['pdf'])) {
-    $html .= "<br/><a href=index.php?pdf$title_arg>Export to PDF</a>";
+    $html .= "<br/><a href=index.php?pdf$title_arg  target='_blank'>Export to PDF</a>";
 }
 
 $html .= "</body>";
